@@ -1,45 +1,69 @@
 #include <stdio.h>
 /**
- * main - Entry point
- * Return: ALways 0
+ * numLength - check length
+ * @n: number
+ * Return: length
+ */
+
+int numLength(int n)
+{
+	int length = 0;
+
+	if (!n)
+	{
+		return (1);
+	}
+
+	while (n)
+	{
+		n = n / 10;
+		length += 1;
+	}
+
+	return (length);
+}
+
+/**
+ *  *main - prints the first 98 fibonaci sequences
+ *  Return: 0 always
  */
 
 int main(void)
 {
-	unsigned long int a;
-	unsigned long int b;
-	unsigned long int c;
-	unsigned long int b1;
-	unsigned long int b2;
-	unsigned long int c1;
-	unsigned long int c2;
+	unsigned long f1 = 1;
+	unsigned long f2 = 2;
+	unsigned long tmp;
+	unsigned long x = 100000000;
+	unsigned long i1 = 0;
+	unsigned long i2 = 0;
+	unsigned long j = 0;
+	short int a = 1,
+	short int init;
 
-	c = 2;
-	b = 1;
-
-	printf("%lu", b);
-
-	for (a = 1; a < 91; a++)
+	while (a <= 98)
 	{
-		printf(", %lu", c);
-		c = c + b;
-		b = c - b;
-	}
+		if (i1 > 0)
+			printf("%lu", i1);
+		init = numLength(x) - 1 - numLength(f1);
+		while (i1 > 0 && init > 0)
+		{
+			printf("%d", 0);
+			init--;
+		}
+		printf("%lu", f1);
 
-	b1 = b / 1000000000;
-	b2 = b % 1000000000;
-	c1 = c / 1000000000;
-	c2 = c % 1000000000;
+		tmp = (f1 + f2) % x;
+		j = i1 + i1 + (f1 + f2) / x;
+		f1 = f2;
+		i1 = i2;
+		f2 = tmp;
+		i2 = j;
 
-	for (a = 92; a < 99; ++a)
-	{
-		printf(", %lu", c1 + (c2 / 1000000000));
-		printf("%lu", c2 % 1000000000);
-		c1 = c1 + b1;
-		b1 = c1 - b1;
-		c2 = c2 + b2;
-		c2 = c2 - b2;
+		if (a != 98)
+			printf(", ");
+		else
+			printf("\n");
+		a++;
 	}
-	printf("\n");
 	return (0);
 }
