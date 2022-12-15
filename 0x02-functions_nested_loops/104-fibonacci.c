@@ -9,7 +9,7 @@ int main(void)
 	unsigned long int a;
 	unsigned long int b;
 	unsigned long int c;
-	unsigned long int a1;
+	unsigned long int b1;
 	unsigned long int b2;
 	unsigned long int c1;
 	unsigned long int c2;
