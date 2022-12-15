@@ -24,9 +24,9 @@ int main(void)
 		{
 			printf("%ld\n", b);
 		}
-		next = b + c;
+		d = b + c;
 		b = c;
-		k = d;
+		c = d;
 	}
 	return (0);
 }
