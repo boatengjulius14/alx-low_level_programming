@@ -7,7 +7,7 @@
 
 void rev_string(char *s)
 {
-	int sum = 0;
+	int a, sum = 0;
 
 	while (sum >= 0)
 	{
@@ -15,8 +15,6 @@ void rev_string(char *s)
 			break;
 		sum++;
 	}
-	int a;
-
 	for (a = 0; a < (sum - 1); a++)
 	{
 		int b, c;
