@@ -4,6 +4,7 @@
  * print_rev - prints a string in reverse, followed by a new line
  * @s: string
  */
+
 void print_rev(char *s)
 {
 	int sum = 0;
@@ -13,10 +14,9 @@ void print_rev(char *s)
 		sum++;
 	}
 
-	while (sum >= 0)
+	for (sum ; sum >= 0; sum--)
 	{
 		_putchar(s[sum]);
-		sum--;
 	}
 	_putchar('\n');
 }
