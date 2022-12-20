@@ -15,7 +15,7 @@ void rev_string(char *s)
 			break;
 		sum++;
 	}
-	int  a;
+	int a;
 
 	for (a = 0; a < (sum - 1); a++)
 	{
