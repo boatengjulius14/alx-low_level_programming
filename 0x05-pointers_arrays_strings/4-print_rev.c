@@ -14,9 +14,11 @@ void print_rev(char *s)
 		sum++;
 	}
 
-	for (sum ; sum >= 0; sum--)
+	int i;
+
+	for (i = sum - 1 ; i >= 0; i--)
 	{
-		_putchar(s[sum]);
+		_putchar(s[i]);
 	}
 	_putchar('\n');
 }
