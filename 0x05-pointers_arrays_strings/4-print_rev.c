@@ -13,7 +13,7 @@ void print_rev(char *s)
 		sum++;
 	}
 
-	while (i >= 0)
+	while (sum >= 0)
 	{
 		_putchar(s[sum]);
 		sum--;
