@@ -6,7 +6,7 @@
  */
 void print_rev(char *s)
 {
-	int sum;
+	int sum = 0;
 
 	while (s[sum] != '\0')
 	{
