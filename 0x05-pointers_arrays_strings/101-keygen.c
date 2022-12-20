@@ -9,11 +9,10 @@
 
 int main(void)
 {
-	int pass;
+	int sum, pass;
 
 	srand(time(NULL));
-	int sum = 0;
-
+	sum = 0;
 	while (sum <= 2645)
 	{
 		pass = (rand() % 128);
