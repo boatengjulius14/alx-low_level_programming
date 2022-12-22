@@ -21,8 +21,8 @@ char *cap_string(char *s)
 		{
 			if (*(s + num) == sym[i])
 			{
-				if ((*(s + (num + 1)) <= 122) && (*(s + (num + 1)) >= 97)
-					* (s + (num + 1)) = *(s + (num + 1)) - 32;
+				if ((*(s + (num + 1)) <= 122) && (*(s + (num + 1)) >= 97))
+					*(s + (num + 1)) = *(s + (num + 1)) - 32;
 				break;
 			}
 		}
