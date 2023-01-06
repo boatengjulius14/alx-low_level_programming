@@ -13,7 +13,7 @@ int prime(int n, int b)
 		return (1);
 	if (n % b == 0 && b > 1)
 		return (0);
-	prime(n, b - 1);
+	return (prime(n, b - 1));
 }
 
 /**
@@ -28,5 +28,5 @@ int is_prime_number(int n)
 		return (0);
 	if (n == 2)
 		return (1);
-	prime(n, n - 1);
+	return (prime(n, n - 1));
 }
