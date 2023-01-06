@@ -7,7 +7,7 @@
  *@len: strlen - 1
  *Return: 1 is a string is panlindrome, 0 if otherwise
  */
-int _compare(char *s, int b, int len)
+int _compare(char *s, int len, int b)
 {
 	if (s[b] != s[len])
 		return (0);
@@ -35,8 +35,7 @@ int _strlen(char *s)
  */
 int is_palindrome(char *s)
 {
-	int b = 0;
 	int length = _strlen(s);
 
-	return (_compare(s, b, length - 1));
+	return (_compare(s, length - 1, 0));
 }
