@@ -24,7 +24,7 @@ char *argstostr(int ac, char **av)
 			count++;
 			j++;
 		}
-		/*count++;*/
+		count++;
 		i++;
 	}
 	arr = malloc((sizeof(char) * count) + 1);
