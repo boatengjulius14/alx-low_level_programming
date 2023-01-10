@@ -46,3 +46,4 @@ char *argstostr(int ac, char **av)
 	}
 	arr[a] = '\0';
 	return (arr);
+}
