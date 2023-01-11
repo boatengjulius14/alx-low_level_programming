@@ -35,8 +35,9 @@ int wordCount(char *str)
 int word_len(char *str, int space_no)
 {
 	int wordNum = 0;
+	int i;
 
-	for (int i = space_no; str[i] != '\0' && str[i] != ' '; i++)
+	for (i = space_no; str[i] != '\0' && str[i] != ' '; i++)
 		wordNum++;
 	return (wordNum);
 }
@@ -49,20 +50,17 @@ int word_len(char *str, int space_no)
 
 char **strtow(char *str)
 {
+	int i, j, a = 0, count, space_no = 0;
+
 	if (str == NULL || str[0] == '\0')
 		return (NULL);
-
-	int count = wordCount(str);
-
+	count = wordCount(str);
 	char **letters = malloc(sizeof(char *) * (count + 1));
 
 	if (letters == NULL)
 		return (NULL);
 
-	int space_no = 0;
-	int a = 0;
-
-	for (int i = 0; str[i] != '\0'; i++)
+	for (i = 0; str[i] != '\0'; i++)
 	{
 		if (str[i] == ' ')
 			space_no = i + 1;
@@ -74,13 +72,13 @@ char **strtow(char *str)
 			letters[a] = malloc(sizeof(char) * (wordNum + 1));
 			if (letters[a] == NULL)
 			{
-				for (int j = 0; j < a; j++)
+				for (j = 0; j < a; j++)
 					free(letters[j]);
 				free(letters);
 				return (NULL);
 			}
 
-			for (int j = 0; j < wordNum; j++)
+			for (j = 0; j < wordNum; j++)
 				letters[a][j] = str[space_no + j];
 			letters[a][wordNum] = '\0';
 			a++;
