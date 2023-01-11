@@ -2,44 +2,32 @@
 #include "main.h"
 
 /**
- * wordCount - performs word count
+ * rec_word_count - performs a word count
  * @str: pointer to string
- * Return: word_count, number of words
+ * @i: iterator
+ * Return: word count on success, 0 for failure.
  */
 
-int wordCount(char *str)
+int rec_word_count(char *str, int i)
 {
-	int i = 0, word_count = 0;
-
-	while (str[i])
-	{
-		if (str[i] == ' ')
-		{
-			i++;
-			continue;
-		}
-		else
-			word_count++;
-		i++;
-	}
-	return (word_count);
+	if (str[i] == '\0')
+		return (0);
+	if (str[i] == ' ' && str[i + 1] != ' ' && str[i + 1] != '\0')
+		return (1 + rec_word_count(str, i + 1));
+	return (rec_word_count(str, i + 1));
 }
 
 /**
- * word_len - performs a word count
+ * word_len - returns word count
  * @str: pointer to string
- * @space_no: number of spaces
- * Return: word_len, length of word
+ * Return: number of words
  */
 
-int word_len(char *str, int space_no)
+int word_len(char *str)
 {
-	int wordNum = 0;
-	int i;
-
-	for (i = space_no; str[i] != '\0' && str[i] != ' '; i++)
-		wordNum++;
-	return (wordNum);
+	if (str[0] != ' ')
+		return (1 + rec_word_count(str, 0));
+	return (rec_word_count(str, 0));
 }
 
 /**
@@ -50,41 +38,44 @@ int word_len(char *str, int space_no)
 
 char **strtow(char *str)
 {
-	int i, j, a = 0, count, space_no = 0;
 	char **letters;
+	int i, a, b, count;
 
-	if (str == NULL || str[0] == '\0')
+	if (str == NULL || str[0] == 0)
 		return (NULL);
-	count = wordCount(str);
+	count = word_len(str);
+	if (count < 1)
+		return (NULL);
 	letters = malloc(sizeof(char *) * (count + 1));
-
 	if (letters == NULL)
 		return (NULL);
-
-	for (i = 0; str[i] != '\0'; i++)
+	i = 0;
+	while (i < count && *str != '\0')
 	{
-		if (str[i] == ' ')
-			space_no = i + 1;
-
-		else if (i == 0 || str[i - 1] == ' ')
+		if (*str != ' ')
 		{
-			int wordNum = word_len(str, space_no);
-
-			letters[a] = malloc(sizeof(char) * (wordNum + 1));
-			if (letters[a] == NULL)
+			a = 0;
+			while (str[a] != ' ')
+				a++;
+			letters[i] = malloc(sizeof(char) * (a + 1));
+			if (letters[i] == NULL)
 			{
-				for (j = 0; j < a; j++)
-					free(letters[j]);
+				while (--i >= 0)
+					free(letters[--i]);
 				free(letters);
 				return (NULL);
 			}
-
-			for (j = 0; j < wordNum; j++)
-				letters[a][j] = str[space_no + j];
-			letters[a][wordNum] = '\0';
-			a++;
+			b = 0;
+			while (b < a)
+			{
+				letters[i][b] = *str;
+				b++, str++;
+			}
+			letters[i][b] = '\0';
+			i++;
 		}
+		str++;
 	}
-	letters[a] = NULL;
+	letters[i] = '\0';
 	return (letters);
 }
