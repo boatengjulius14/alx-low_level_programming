@@ -31,25 +31,17 @@ int word_len(char *str)
 }
 
 /**
- * strtow - splits a string into words
+ * strin_g - splits a string into words
+ * @count: count
  * @str: pointer to string
- * Return: letters, pointer to a string of words
+ * @letters: pointer to final string of words
+ *Return: letters, NULL on failure
  */
 
-char **strtow(char *str)
+char **strin_g(int count, char *str, char **letters)
 {
-	char **letters;
-	int i, a, b, count;
+	int i = 0, a, b;
 
-	if (str == NULL || str[0] == 0)
-		return (NULL);
-	count = word_len(str);
-	if (count < 1)
-		return (NULL);
-	letters = malloc(sizeof(char *) * (count + 1));
-	if (letters == NULL)
-		return (NULL);
-	i = 0;
 	while (i < count && *str != '\0')
 	{
 		if (*str != ' ')
@@ -77,5 +69,38 @@ char **strtow(char *str)
 		str++;
 	}
 	letters[i] = '\0';
+	return (letters);
+}
+
+
+/**
+ * strtow - splits a string into words
+ * @str: pointer to string
+ * Return: letters, pointer to a string of words
+ */
+
+char **strtow(char *str)
+{
+	char **letters;
+	int i, a, b, m, count;
+
+	if (str == NULL || str[0] == 0)
+		return (NULL);
+	count = word_len(str);
+
+	if (count < 1)
+		return (NULL);
+
+	letters = malloc(sizeof(char *) * (count + 1));
+
+	if (letters == NULL)
+	{
+		for (m = 0; m < count ; m++)
+			free(letters[m]);
+		free(letters);
+		return (NULL);
+	}
+
+	letters = strin_g(count, str, letters);
 	return (letters);
 }
