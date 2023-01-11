@@ -82,7 +82,7 @@ char **strin_g(int count, char *str, char **letters)
 char **strtow(char *str)
 {
 	char **letters;
-	int i, a, b, m, count;
+	int m, count;
 
 	if (str == NULL || str[0] == 0)
 		return (NULL);
