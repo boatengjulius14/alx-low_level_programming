@@ -51,11 +51,12 @@ int word_len(char *str, int space_no)
 char **strtow(char *str)
 {
 	int i, j, a = 0, count, space_no = 0;
+	char **letters;
 
 	if (str == NULL || str[0] == '\0')
 		return (NULL);
 	count = wordCount(str);
-	char **letters = malloc(sizeof(char *) * (count + 1));
+	letters = malloc(sizeof(char *) * (count + 1));
 
 	if (letters == NULL)
 		return (NULL);
