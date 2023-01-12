@@ -47,6 +47,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 
 		return ((void *)rptr);
 	}
+	rptr = malloc(new_size);
 	free(ptr);
 	return (rptr);
 }
