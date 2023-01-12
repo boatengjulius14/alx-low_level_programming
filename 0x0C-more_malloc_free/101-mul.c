@@ -33,8 +33,7 @@ int number_checker(char *argv)
 
 int main(int argc, char *argv[])
 {
-	int num1, num2;
-	unsigned long mul;
+	int num1, num2, mul;
 
 	if (argc < 3)
 	{
