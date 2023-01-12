@@ -2,105 +2,73 @@
 #include "main.h"
 
 /**
- * rec_word_count - performs a word count
+ * word_counter - returns word count
  * @str: pointer to string
- * @i: iterator
- * Return: word count on success, 0 for failure.
+ * Return: b, number of words
  */
 
-int rec_word_count(char *str, int i)
+int word_counter(char *str)
 {
-	if (str[i] == '\0')
-		return (0);
-	if (str[i] == ' ' && str[i + 1] != ' ' && str[i + 1] != '\0')
-		return (1 + rec_word_count(str, i + 1));
-	return (rec_word_count(str, i + 1));
-}
+	int a = 0, b = 0, i;
 
-/**
- * word_len - returns word count
- * @str: pointer to string
- * Return: number of words
- */
-
-int word_len(char *str)
-{
-	if (str[0] != ' ')
-		return (1 + rec_word_count(str, 0));
-	return (rec_word_count(str, 0));
-}
-
-/**
- * strin_g - splits a string into words
- * @count: count
- * @str: pointer to string
- * @letters: pointer to final string of words
- *Return: letters, NULL on failure
- */
-
-char **strin_g(int count, char *str, char **letters)
-{
-	int i = 0, a, b;
-
-	while (i < count && *str != '\0')
+	i = 0;
+	while (str[i] != '\0')
 	{
-		if (*str != ' ')
-		{
+		if (str[i] == ' ')
 			a = 0;
-			while (str[a] != ' ')
-				a++;
-			letters[i] = malloc(sizeof(char) * (a + 1));
-			if (letters[i] == NULL)
-			{
-				while (--i >= 0)
-					free(letters[--i]);
-				free(letters);
-				return (NULL);
-			}
-			b = 0;
-			while (b < a)
-			{
-				letters[i][b] = *str;
-				b++, str++;
-			}
-			letters[i][b] = '\0';
-			i++;
+		else if (a == 0)
+		{
+			a = 1;
+			b++;
 		}
-		str++;
+		i++;
 	}
-	letters[i] = '\0';
-	return (letters);
-}
 
+	return (b);
+}
 
 /**
  * strtow - splits a string into words
  * @str: pointer to string
- * Return: letters, pointer to a string of words
+ * Return: f_str, pointer to a string of words
  */
 
 char **strtow(char *str)
 {
-	char **letters;
-	int m, count;
+	char **f_str, *stor;
+	int i, j = 0, length = 0, word, a = 0, init, range;
 
-	if (str == NULL || str[0] == 0)
+	while (*(str + length))
+		length++;
+	word = word_counter(str);
+	if (word == 0)
 		return (NULL);
-	count = word_len(str);
 
-	if (count < 1)
+	f_str = (char **) malloc(sizeof(char *) * (word + 1));
+	if (f_str == NULL)
 		return (NULL);
 
-	letters = malloc(sizeof(char *) * (count + 1));
-
-	if (letters == NULL)
+	for (i = 0; i <= length; i++)
 	{
-		for (m = 0; m < count ; m++)
-			free(letters[m]);
-		free(letters);
-		return (NULL);
+		if (str[i] == ' ' || str[i] == '\0')
+		{
+			if (a)
+			{
+				range = i;
+				stor = (char *) malloc(sizeof(char) * (a + 1));
+				if (stor == NULL)
+					return (NULL);
+				while (init < range)
+					*stor++ = str[init++];
+				*stor = '\0';
+				f_str[j] = stor - a;
+				j++;
+				a = 0;
+			}
+		}
+		else if (a++ == 0)
+			init = i;
 	}
-
-	letters = strin_g(count, str, letters);
-	return (letters);
+	f_str[j] = NULL;
+	return (f_str);
 }
