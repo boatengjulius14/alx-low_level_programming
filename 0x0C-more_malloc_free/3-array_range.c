@@ -17,7 +17,7 @@ int *array_range(int min, int max)
 
 	len = (max - min) + 1;
 
-	ptr = malloc((len + 1) * sizeof(int));
+	ptr = malloc(len * sizeof(int));
 	if (ptr == NULL)
 		return (NULL);
 
