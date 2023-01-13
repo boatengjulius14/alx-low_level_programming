@@ -1,28 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <ctype.h>
-
-/**
- * number_checker - mutliplies two positive numbers
- * @argv: argument vector
- * Return: 1 for a number or 0
- */
-
-int number_checker(char *argv)
-{
-	int i;
-
-	i = 0;
-	while (argv[i])
-	{
-		if (!isdigit(argv[i]))
-		{
-			return (0);
-		}
-		i++;
-	}
-	return (1);
-}
+#include <stdlib.h>
 
 /**
  * main - multiples two positive numbers
@@ -33,25 +11,28 @@ int number_checker(char *argv)
 
 int main(int argc, char *argv[])
 {
-	int num1, num2, mul;
+	unsigned long mul;
+	int i, j;
 
-	if (argc < 3)
+	if (argc < 2)
 	{
 		printf("Error\n");
 		exit(98);
 	}
 
-	if (!number_checker(argv[1]) || !number_checker(argv[2]))
+	for (i = 1; i < argc; i++)
 	{
-		printf("Error\n");
-		exit(98);
+		for (j = 0; argv[i][j] != '\0'; j++)
+		{
+			if (argv[i][j] > 57 || argv[i][j] < 48)
+			{
+				printf("Error\n");
+				exit(98);
+			}
+		}
 	}
+	mul = atol(argv[1]) *  atol(argv[2]);
+	printf("%lu\n", mul);
 
-	num1 = atoi(argv[1]);
-	num2 = atoi(argv[2]);
-
-	mul = num1 * num2;
-
-	printf("%d\n", mul);
 	return (0);
 }
