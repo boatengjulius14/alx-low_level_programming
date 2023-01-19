@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include "variadic_functions.h"
 /**
  * _strlen - returns the length of a string
  * @format: string to be printed
