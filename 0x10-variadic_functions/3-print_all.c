@@ -1,8 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <stdarg.h>
 #include "variadic_functions.h"
-
+#include <stdarg.h>
 /**
  * _char - prints char arguments
  * @op: argument pointer
@@ -39,8 +37,10 @@ void _str(va_list op)
 	char *nstr = va_arg(op, char*);
 
 	if (nstr)
+	{
 		printf("%s", nstr);
-	else
+		return;
+	}
 		printf("(nil)");
 }
 
