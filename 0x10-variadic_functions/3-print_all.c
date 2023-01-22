@@ -1,80 +1,50 @@
 #include <stdio.h>
-#include "variadic_functions.h"
 #include <stdarg.h>
-/**
- * _char - prints char arguments
- * @op: argument pointer
- */
-void _char(va_list op)
-{
-	printf("%c", va_arg(op, int));
-}
-
-/**
- * _int - prints int arguments
- * @op: argument pointer
- */
-void _int(va_list op)
-{
-	printf("%d", va_arg(op, int));
-}
-
-/**
- * _float - prints float parameters
- * @op: argument pointer
- */
-void _float(va_list op)
-{
-	printf("%f", va_arg(op, double));
-}
-
-/**
- * _str - prints str parameters
- * @op: argument pointer
- */
-void _str(va_list op)
-{
-	char *nstr = va_arg(op, char*);
-
-	if (nstr)
-	{
-		printf("%s", nstr);
-		return;
-	}
-		printf("(nil)");
-}
-
+#include <stdlib.h>
 /**
  * print_all - prints anything
  * @format: pointer to list of types of arguments passed to the function
  */
+
 void print_all(const char * const format, ...)
 {
 	int i, j, _switch = 0;
+	char *nstr, *init = "cifs";
 	va_list op;
-
-	opstruc _func[] = {
-		{"c", &_char},
-		{"i", &_int},
-		{"f", &_float},
-		{"s", &_str},
-	};
 
 	va_start(op, format);
 	i = 0;
 	while (format[i])
 	{
 		j = 0;
-		while (j < 4)
+		while (init[j])
 		{
-			if (format[i] == *(_func[j].c))
+			if (format[i] == init[j] && _switch)
 			{
-				if (_switch == 1)
-					printf(", ");
-				_func[j].fptr(op);
-				_switch = 1;
-			}
-			j++;
+				printf(", ");
+				break;
+			} j++;
+		}
+		switch (format[i])
+		{
+			case 'c':
+				printf("%c", va_arg(op, int)), _switch = 1;
+				break;
+			case 'i':
+				printf("%d", va_arg(op, int)), _switch = 1;
+				break;
+			case 'f':
+				printf("%f", va_arg(op, double)), _switch = 1;
+				break;
+			case 's':
+				nstr = va_arg(op, char*), _switch = 1;
+				if (nstr)
+				{
+					printf("%s", nstr);
+					break;
+				}
+				printf ("(nil)");
+				break;
 		}
 		i++;
 	}
