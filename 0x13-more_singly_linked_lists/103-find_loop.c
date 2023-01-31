@@ -12,7 +12,7 @@ listint_t *find_listint_loop(listint_t *head)
 
 	if (!head)
 		return (NULL);
-	while (head)
+	for (; head;)
 	{
 		diff = head - head->next;
 		if (!head->next)
