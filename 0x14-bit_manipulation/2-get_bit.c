@@ -9,15 +9,11 @@
 
 int get_bit(unsigned long int n, unsigned int index)
 {
-	unsigned long int mod, i = 0;
+	unsigned int i;
 
-	while (i <= index)
-	{
-		mod = n % 2;
-		n = n / 2;
-		if (i == index)
-			return (mod & 1);
-		i++;
-	}
-	return (-1);
+	for (i = 0; i < index; i++)
+		n >>= 1;
+	if (i > ((sizeof(unsigned long int) * 8) - 1))
+		return (-1);
+	return (n & 1);
 }
