@@ -11,7 +11,7 @@ int get_bit(unsigned long int n, unsigned int index)
 {
 	unsigned long int mod, i = 0;
 
-	while (1)
+	while (i <= index)
 	{
 		mod = n % 2;
 		n = n / 2;
