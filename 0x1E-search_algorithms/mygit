@@ -1,0 +1,9 @@
+#!/bin/bash
+# git add, commit and push taking in argument as commit message
+
+if [ $# -nq 1 ]
+then
+	echo "Pass commit message as argument"
+else
+	git add .; git commit -m "$1"; git push;
+fi
